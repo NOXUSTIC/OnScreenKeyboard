@@ -332,10 +332,7 @@ Approximate memory usage:
 ⚠️ Arduino Uno (limited RAM - use short text only)  
 
 ### Tested Displays
-✅ ST7789 (240x320, 240x240)  
-✅ ILI9341 (240x320)  
-✅ ST7735 (128x160)  
-✅ ILI9488 (320x480)  
+✅ ST7789 (240x320, 240x240)
 
 ## Troubleshooting
 
