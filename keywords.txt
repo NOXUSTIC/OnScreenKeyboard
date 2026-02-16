@@ -1,0 +1,56 @@
+#######################################
+# Syntax Coloring Map for OnScreenKeyboard
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+OnScreenKeyboard	KEYWORD1
+KeyboardKey	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+setKeyboardPosition	KEYWORD2
+setInputFieldPosition	KEYWORD2
+setMaxInputLength	KEYWORD2
+setColorScheme	KEYWORD2
+getInput	KEYWORD2
+draw	KEYWORD2
+clear	KEYWORD2
+update	KEYWORD2
+setText	KEYWORD2
+getText	KEYWORD2
+clearText	KEYWORD2
+toggleCapslock	KEYWORD2
+isCapslock	KEYWORD2
+getSelectedKey	KEYWORD2
+setSelectedKey	KEYWORD2
+navigateUp	KEYWORD2
+navigateDown	KEYWORD2
+navigateLeft	KEYWORD2
+navigateRight	KEYWORD2
+selectKey	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+OSK_MAX_KEYS	LITERAL1
+OSK_MAX_INPUT_LENGTH	LITERAL1
+OSK_COLOR_BG	LITERAL1
+OSK_COLOR_KEY	LITERAL1
+OSK_COLOR_KEY_SEL	LITERAL1
+OSK_COLOR_TEXT	LITERAL1
+OSK_COLOR_TEXT_DIM	LITERAL1
+OSK_COLOR_BORDER	LITERAL1
+OSK_COLOR_SPECIAL	LITERAL1
+OSK_KEY_BACKSPACE	LITERAL1
+OSK_KEY_ENTER	LITERAL1
+OSK_KEY_SPACE	LITERAL1
+OSK_KEY_CAPSLOCK	LITERAL1
+OSK_KEY_DOT	LITERAL1
+OSK_KEY_UNDERSCORE	LITERAL1
