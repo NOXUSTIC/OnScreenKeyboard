@@ -5,7 +5,7 @@
 
 #include "OnScreenKeyboard.h"
 
-// QWERTY keyboard layout
+
 const char keyboard_row1[] = "1234567890";
 const char keyboard_row2[] = "qwertyuiop";
 const char keyboard_row3[] = "asdfghjkl";
@@ -19,14 +19,14 @@ OnScreenKeyboard::OnScreenKeyboard(TFT_eSPI* tft) {
   _input_text = "";
   _max_input_length = OSK_MAX_INPUT_LENGTH;
   
-  // Default positions
+  
   _keyboard_y = 120;
   _display_x = 10;
   _display_y = 60;
   _display_w = 220;
   _display_h = 35;
   
-  // Default color scheme
+  
   _color_bg = OSK_COLOR_BG;
   _color_key = OSK_COLOR_KEY;
   _color_key_selected = OSK_COLOR_KEY_SEL;
@@ -35,7 +35,7 @@ OnScreenKeyboard::OnScreenKeyboard(TFT_eSPI* tft) {
   _color_border = OSK_COLOR_BORDER;
   _color_special = OSK_COLOR_SPECIAL;
   
-  // Initialize keyboard layout
+  
   initQwertyLayout();
 }
 
@@ -47,7 +47,7 @@ void OnScreenKeyboard::begin(int btn_up, int btn_down, int btn_ok) {
 
 void OnScreenKeyboard::setKeyboardPosition(int y_start) {
   _keyboard_y = y_start;
-  initQwertyLayout(); // Re-init with new position
+  initQwertyLayout(); 
 }
 
 void OnScreenKeyboard::setInputFieldPosition(int x, int y, int w, int h) {
@@ -77,7 +77,7 @@ void OnScreenKeyboard::initQwertyLayout() {
   int keyW = 22, keyH = 18;
   int startY = _keyboard_y;
   
-  // Row 1: Numbers
+  
   for (int i = 0; i < 10; i++) {
     _keys[_total_keys].character = keyboard_row1[i];
     _keys[_total_keys].x = 2 + i * keyW;
@@ -87,7 +87,7 @@ void OnScreenKeyboard::initQwertyLayout() {
     _total_keys++;
   }
   
-  // Row 2: QWERTYUIOP
+  
   for (int i = 0; i < 10; i++) {
     _keys[_total_keys].character = keyboard_row2[i];
     _keys[_total_keys].x = 12 + i * keyW;
@@ -97,7 +97,7 @@ void OnScreenKeyboard::initQwertyLayout() {
     _total_keys++;
   }
   
-  // Row 3: ASDFGHJKL
+ 
   for (int i = 0; i < 9; i++) {
     _keys[_total_keys].character = keyboard_row3[i];
     _keys[_total_keys].x = 22 + i * keyW;
@@ -107,7 +107,7 @@ void OnScreenKeyboard::initQwertyLayout() {
     _total_keys++;
   }
   
-  // Row 4: ZXCVBNM
+  
   for (int i = 0; i < 7; i++) {
     _keys[_total_keys].character = keyboard_row4[i];
     _keys[_total_keys].x = 32 + i * keyW;
@@ -117,7 +117,7 @@ void OnScreenKeyboard::initQwertyLayout() {
     _total_keys++;
   }
   
-  // CAPSLOCK
+  
   _keys[_total_keys].character = OSK_KEY_CAPSLOCK;
   _keys[_total_keys].x = 186;
   _keys[_total_keys].y = startY + (keyH + 2) * 3;
@@ -125,8 +125,8 @@ void OnScreenKeyboard::initQwertyLayout() {
   _keys[_total_keys].h = keyH;
   _total_keys++;
   
-  // Special keys row
-  // DOT (.)
+  
+  
   _keys[_total_keys].character = OSK_KEY_DOT;
   _keys[_total_keys].x = 20;
   _keys[_total_keys].y = startY + (keyH + 2) * 4;
@@ -134,7 +134,7 @@ void OnScreenKeyboard::initQwertyLayout() {
   _keys[_total_keys].h = keyH;
   _total_keys++;
   
-  // SPACE
+  
   _keys[_total_keys].character = OSK_KEY_SPACE;
   _keys[_total_keys].x = 55;
   _keys[_total_keys].y = startY + (keyH + 2) * 4;
@@ -142,7 +142,7 @@ void OnScreenKeyboard::initQwertyLayout() {
   _keys[_total_keys].h = keyH;
   _total_keys++;
   
-  // Backspace (DEL)
+  
   _keys[_total_keys].character = OSK_KEY_BACKSPACE;
   _keys[_total_keys].x = 130;
   _keys[_total_keys].y = startY + (keyH + 2) * 4;
@@ -150,7 +150,7 @@ void OnScreenKeyboard::initQwertyLayout() {
   _keys[_total_keys].h = keyH;
   _total_keys++;
   
-  // UNDERSCORE (_)
+  
   _keys[_total_keys].character = OSK_KEY_UNDERSCORE;
   _keys[_total_keys].x = 175;
   _keys[_total_keys].y = startY + (keyH + 2) * 4;
@@ -158,7 +158,7 @@ void OnScreenKeyboard::initQwertyLayout() {
   _keys[_total_keys].h = keyH;
   _total_keys++;
   
-  // DONE button (Enter)
+  
   _keys[_total_keys].character = OSK_KEY_ENTER;
   _keys[_total_keys].x = 85;
   _keys[_total_keys].y = startY + (keyH + 2) * 5;
@@ -170,13 +170,13 @@ void OnScreenKeyboard::initQwertyLayout() {
 void OnScreenKeyboard::drawKey(int index, bool selected) {
   KeyboardKey k = _keys[index];
   
-  // Clear the key area
+  
   _tft->fillRect(k.x - 1, k.y - 1, k.w + 2, k.h + 2, _color_bg);
   
-  // Special handling for capslock
+  
   uint16_t keyColor = _color_key;
   if (k.character == OSK_KEY_CAPSLOCK && _capslock && !selected) {
-    keyColor = 0x07E0; // Green when active
+    keyColor = 0x07E0; 
   }
   
   if (selected) {
@@ -191,7 +191,7 @@ void OnScreenKeyboard::drawKey(int index, bool selected) {
   _tft->setTextSize(2);
   _tft->setTextDatum(MC_DATUM);
   
-  // Draw key label
+  
   if (k.character == OSK_KEY_BACKSPACE) {
     _tft->setTextSize(1);
     _tft->drawString("DEL", k.x + k.w/2, k.y + k.h/2);
@@ -216,32 +216,32 @@ void OnScreenKeyboard::drawKey(int index, bool selected) {
 }
 
 void OnScreenKeyboard::drawInputField() {
-  // Draw input field background
+  
   _tft->fillRoundRect(_display_x, _display_y, _display_w, _display_h, 4, _color_key);
   _tft->drawRoundRect(_display_x, _display_y, _display_w, _display_h, 4, _color_border);
   
-  // Draw text with cursor
+  
   _tft->setTextSize(2);
   _tft->setTextColor(_color_text);
   _tft->setCursor(_display_x + 5, _display_y + 10);
   
-  // Display text (scroll if too long)
+  
   String displayText = _input_text;
   if (displayText.length() > 18) {
     displayText = displayText.substring(displayText.length() - 18);
   }
   _tft->print(displayText);
   
-  // Draw cursor
+  
   int cursorX = _display_x + 5 + (displayText.length() > 18 ? 18 : displayText.length()) * 12;
   _tft->fillRect(cursorX, _display_y + 10, 2, 14, _color_key_selected);
 }
 
 void OnScreenKeyboard::draw() {
-  // Draw input field
+  
   drawInputField();
   
-  // Draw all keys
+  
   for (int i = 0; i < _total_keys; i++) {
     drawKey(i, i == _selected_key);
   }
@@ -256,7 +256,7 @@ String OnScreenKeyboard::getInput(String title, String default_text) {
   _selected_key = 0;
   _capslock = false;
   
-  // Clear screen and draw title
+  
   _tft->fillScreen(_color_bg);
   
   if (title.length() > 0) {
@@ -267,12 +267,12 @@ String OnScreenKeyboard::getInput(String title, String default_text) {
     _tft->setTextDatum(TL_DATUM);
   }
   
-  // Draw keyboard
+  
   draw();
   
-  // Main input loop
+  
   while (true) {
-    // Check UP button
+   
     if (!digitalRead(_btn_up)) {
       while (!digitalRead(_btn_up)) delay(10);
       drawKey(_selected_key, false);
@@ -281,7 +281,7 @@ String OnScreenKeyboard::getInput(String title, String default_text) {
       drawKey(_selected_key, true);
     }
     
-    // Check DOWN button
+   
     if (!digitalRead(_btn_down)) {
       while (!digitalRead(_btn_down)) delay(10);
       drawKey(_selected_key, false);
@@ -290,7 +290,7 @@ String OnScreenKeyboard::getInput(String title, String default_text) {
       drawKey(_selected_key, true);
     }
     
-    // Check OK button
+    
     if (!digitalRead(_btn_ok)) {
       uint32_t pressStart = millis();
       while (!digitalRead(_btn_ok)) {
@@ -299,22 +299,22 @@ String OnScreenKeyboard::getInput(String title, String default_text) {
       
       char selectedChar = _keys[_selected_key].character;
       
-      if (selectedChar == OSK_KEY_ENTER) { // DONE
+      if (selectedChar == OSK_KEY_ENTER) {
         return _input_text;
       }
-      else if (selectedChar == OSK_KEY_BACKSPACE) { // Backspace
+      else if (selectedChar == OSK_KEY_BACKSPACE) {
         if (_input_text.length() > 0) {
           _input_text.remove(_input_text.length() - 1);
         }
       }
-      else if (selectedChar == OSK_KEY_CAPSLOCK) { // Capslock
+      else if (selectedChar == OSK_KEY_CAPSLOCK) { 
         toggleCapslock();
-        // Redraw all keys to show caps state
+        
         for (int i = 0; i < _total_keys; i++) {
           drawKey(i, i == _selected_key);
         }
       }
-      else { // Regular character
+      else { 
         if (_input_text.length() < _max_input_length) {
           char charToAdd = selectedChar;
           if (_capslock && selectedChar >= 'a' && selectedChar <= 'z') {
@@ -324,7 +324,7 @@ String OnScreenKeyboard::getInput(String title, String default_text) {
         }
       }
       
-      // Update display
+      
       drawInputField();
     }
     
@@ -333,9 +333,9 @@ String OnScreenKeyboard::getInput(String title, String default_text) {
 }
 
 bool OnScreenKeyboard::update() {
-  // Non-blocking version - returns true if Enter pressed
-  // User must call this repeatedly in their loop
-  return false; // Implement if needed
+  
+  
+  return false; 
 }
 
 void OnScreenKeyboard::setText(String text) {
