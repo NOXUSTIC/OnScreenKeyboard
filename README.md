@@ -379,11 +379,11 @@ Designed for easy WiFi configuration and user input in Arduino and ESP32 project
 
 - **Issues**: [GitHub Issues](https://github.com/noxustic/OnScreenKeyboard/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/noxustic/OnScreenKeyboard/discussions)
-- **Email**: support@noxustic.com
+- **Email**: noxustic@gmail.com
 
 ## Changelog
 
-### Version 1.0.0 (2024)
+### Version 1.0.0 (2026)
 - Initial release
 - QWERTY layout with 4 rows
 - Special keys support
